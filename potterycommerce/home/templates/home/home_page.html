@@ -7,7 +7,7 @@
     </h1>
 
     <div class="columns">
-        {% for product in products %}
+        {% for product in page.get_descendants %}
             <div class="column col-6">
                 <div class="card">
                     <div class="card-image">
