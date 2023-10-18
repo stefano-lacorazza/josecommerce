@@ -1,17 +1,22 @@
+<!-- /.home/templates/home/home_template.html -->
 {% extends "base.html" %}
 {% load wagtailimages_tags %}
 
 {% block content %}
     <h1>
-        Welcome to our store
+        <p>CERAMICS ARTS</p>
+        <p>Handmade Fine Colombian Pottery</p>
+        <p>by Jose Luis Rodriguez</p>
     </h1>
 
     <div class="columns">
-        {% for product in page.get_descendants %}
+        {% for product in products %}
+
+        
             <div class="column col-6">
                 <div class="card">
                     <div class="card-image">
-                        {% image product.image fill-1000x200 as tmp_image %}
+                        {% image product.image fill-1000x1000 as tmp_image %}
                         <img src="{{ tmp_image.url }}" alt="" class="img-responsive">
                     </div>
                     <div class="card-header">
