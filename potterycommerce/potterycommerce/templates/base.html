@@ -88,7 +88,7 @@
 
     
     <header id="header" class="site-header">
-      <nav id="header-nav" class="navbar navbar-expand-lg px-3">
+      <nav id="header-nav" class="navbar navbar-expand-lg px-3" >
         <div class="container">
           <a class="navbar-brand d-lg-none" href="index.html">
             <img src="{% static 'images/main-logo.png' %}" class="logo">
@@ -161,12 +161,13 @@
                   <li class="nav-item">
                     <a class="nav-link me-0" href="login.html">Account</a>
                   </li>
+
                   <!-- Snipcart summary and View cart button -->
                     <section class="navbar-section snipcart-summary">
                       <div class="input-group input-line">
                           <a href="" class="btn btn-primary snipcart-checkout">
                               <i class="icon icon-apps"></i>
-                              View cart (<span class="snipcart-total-items">0</span>)
+                              Cart (<span class="snipcart-total-items">0</span>)
                           </a>
                       </div>
                     </section>
@@ -250,7 +251,7 @@
             <div class="row d-flex flex-wrap justify-content-between">
               <div class="col-lg-3 col-sm-6 pb-3" data-aos="fade" data-aos-easing="ease-in" data-aos-duration="1000" data-aos-once="true">
                 <div class="footer-menu">
-                  <img src="{% static 'images/logoatrio.png' %}"style="height: 200px" alt="logo" class="mb-2">
+                  <img src="{% static 'images/logoatrio.png' %}"style="height: 100px" alt="logo" class="mb-2">
                   <p>Nunc tristique facilisis consectetur vivamus ut porta porta aliquam vitae vehicula leo nullam urna lectus.</p>
                 </div>
               </div>
@@ -357,7 +358,7 @@
       </div>
     </div>
     
-    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/plugins.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
