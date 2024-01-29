@@ -1,49 +1,45 @@
-{% load static wagtailcore_tags wagtailuserbar %}
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+  <head>
+    {% load static %}
+    {% load  static  wagtailsettings_tags %}
+    {% load static wagtailcore_tags wagtailuserbar %}
+    {% get_settings %}
+    
+    {# Global stylesheets #}
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+    {# Snipcart #}
 
-        {% load static %}
-{% load  static  wagtailsettings_tags %}
-{% load static wagtailcore_tags wagtailuserbar %}
-{% get_settings %}
-
-{# Global stylesheets #}
-<link rel="stylesheet" type="text/css" href="css/vendor.css">
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="style.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
-<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
-<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
-
-<!-- script
-================================================== -->
-<script src="js/modernizr.js"></script>
+    {% if settings.home.SnipcartSettings.api_key %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+        <script src="https://cdn.snipcart.com/scripts/2.0/snipcart.js" id="snipcart" data-api-key="{{ settings.home.SnipcartSettings.api_key }}"></script>
+        <link href="https://cdn.snipcart.com/themes/2.0/base/snipcart.min.css" type="text/css" rel="stylesheet" />
+    {% endif %}
 
 
-{# Snipcart #}
+    <title>
+      {% block title %}
+      {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
+      {% endblock %}
+      {% block title_suffix %}
+      {% wagtail_site as current_site %}
+      {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
+      {% endblock %}
+    </title>
 
-{% if settings.home.SnipcartSettings.api_key %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-    <script src="https://cdn.snipcart.com/scripts/2.0/snipcart.js" id="snipcart" data-api-key="{{ settings.home.SnipcartSettings.api_key }}"></script>
-    <link href="https://cdn.snipcart.com/themes/2.0/base/snipcart.min.css" type="text/css" rel="stylesheet" />
-{% endif %}
-        <meta charset="utf-8" />
-        <title>
-            {% block title %}
-            {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
-            {% endblock %}
-            {% block title_suffix %}
-            {% wagtail_site as current_site %}
-            {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
-            {% endblock %}
-        </title>
-        {% if page.search_description %}
+    <meta charset="utf-8">
+
+    <link rel="icon" type="image/x-icon" href="{% static 'images/Favicon_16x16_N.png' %}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    {% if page.search_description %}
         <meta name="description" content="{{ page.search_description }}" />
         {% endif %}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -51,170 +47,324 @@
         {# Force all links in the live preview panel to be opened in a new tab #}
         {% if request.in_preview_panel %}
         <base target="_blank">
-        {% endif %}
+    {% endif %}
 
-        {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/potterycommerce.css' %}">
+    {# Global stylesheets #}
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'css/potterycommerce.css' %}"> -->
 
-        {% block extra_css %}
-        {# Override this in templates to add extra stylesheets #}
-        {% endblock %}
-    </head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/vendor.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
-    <body class="{% block body_class %}{% endblock %}">
-        {% wagtailuserbar %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap" rel="stylesheet">
+    
+    {% block extra_css %}
+    {# Override this in templates to add extra stylesheets #}
+    {% endblock %}
+    
 
-<div class="container grid-lg">
+    <style>
+
+
+    .swiper-slide {
+      background-image: url("{% static 'images/ceramicas/vasos1.jpeg' %}");
+      
+    }
+
+    </style>
+
+
+
+    <script src="{% static 'js/modernizr.js' %}"></script>
+  </head>
+
+
+  <body class="{% block body_class %}{% endblock %}">
+    {% wagtailuserbar %}
+    
+
+
+    
     <header id="header" class="site-header">
-        <nav id="header-nav" class="navbar navbar-expand-lg px-3">
-          <div class="container">
-            <a class="navbar-brand d-lg-none" href="index.html">
-              <img src="images/main-logo.png" class="logo">
-            </a>
-            <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
-              <div class="offcanvas-header px-4 pb-0">
-                <a class="navbar-brand" href="index.html">
-                  <img src="images/main-logo.png" class="logo">
-                </a>
-                <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#bdNavbar"></button>
-              </div>
-              <div class="offcanvas-body">
-                <ul id="navbar" class="navbar-nav w-100 d-flex justify-content-between align-items-center">
-                  
-                  <ul class="list-unstyled d-lg-flex justify-content-md-between align-items-center">
-                    <li class="nav-item">
-                      <a class="nav-link ms-0" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link ms-0" href="shop.html">Shop</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle ms-0" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Pages<svg class="bi" width="18" height="18"><use xlink:href="#chevron-down"></use></svg></a>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <a href="about.html" class="dropdown-item fs-5 fw-medium">About <span class="text-primary">(PRO)</span></a>
-                        </li>
-                        <li>
-                          <a href="shop.html" class="dropdown-item fs-5 fw-medium">Shop <span class="text-primary">(PRO)</span></a>
-                        </li>
-                        <li>
-                          <a href="single-product.html" class="dropdown-item fs-5 fw-medium">Single Product <span class="text-primary">(PRO)</span></a>
-                        </li>
-                        <li>
-                          <a href="login.html" class="dropdown-item fs-5 fw-medium">Account <span class="text-primary">(PRO)</span></a>
-                        </li>
-                        <li>
-                          <a href="cart.html" class="dropdown-item fs-5 fw-medium">Cart <span class="text-primary">(PRO)</span></a>
-                        </li>
-                        <li>
-                          <a href="checkout.html" class="dropdown-item fs-5 fw-medium">Checkout <span class="text-primary">(PRO)</span></a>
-                        </li>
-                        <li>
-                          <a href="blog.html" class="dropdown-item fs-5 fw-medium">Blog <span class="text-primary">(PRO)</span></a>
-                        </li>
-                        <li>
-                          <a href="single-post.html" class="dropdown-item fs-5 fw-medium">Single Post <span class="text-primary">(PRO)</span></a>
-                        </li>
-                        <li>
-                          <a href="contact.html" class="dropdown-item fs-5 fw-medium">Contact <span class="text-primary">(PRO)</span></a>
-                        </li>
-                      </ul>
-                    </li>                  
-                  </ul>
-                  
-                  <a class="navbar-brand d-none d-lg-block me-0" href="index.html">
-                    <img src="images/main-logo.png" class="logo">
-                  </a>
-  
-                  <ul class="list-unstyled d-lg-flex justify-content-between align-items-center">
-                    <li class="nav-item search-item">
-                      <div id="search-bar" class="border-right d-none d-lg-block">
-                        <form action="" autocomplete="on">
-                          <input id="search" class="text-dark" name="search" type="text" placeholder="Search Here...">
-                          <a type="submit" class="nav-link me-0" href="#">Search</a>
-                        </form>
-                      </div>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link me-0" href="login.html">Account</a>
-                    </li>
-                    <li class="cart-dropdown nav-item dropdown">
-                      <a class="nav-link dropdown-toggle me-0" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Cart(2)</a>
-                      <div class="dropdown-menu dropdown-menu-end p-3">
-                        <h4 class="d-flex justify-content-between align-items-center mb-3">
-                          <span class="text-primary">Your cart</span>
-                          <span class="badge bg-primary rounded-pill">2</span>
-                        </h4>
-                        <ul class="list-group mb-3">
-                          <li class="list-group-item bg-transparent border-dark d-flex justify-content-between lh-sm">
-                            <div>
-                              <h5 class="card-title fs-3 text-capitalize">
-                                <a href="single-product.html">Matt Black</a>
-                              </h5>
-                              <small class="text-body-secondary">Soft texture matt coated.</small>
-                            </div>
-                            <span class="text-primary">$120</span>
-                          </li>
-                          <li class="list-group-item bg-transparent border-dark d-flex justify-content-between lh-sm">
-                            <div>
-                              <h5 class="card-title fs-3 text-capitalize">
-                                <a href="single-product.html">Shiny Pot</a>
-                              </h5>
-                              <small class="text-body-secondary">This pot is ceramic.</small>
-                            </div>
-                            <span class="text-primary">$870</span>
-                          </li>
-                          <li class="list-group-item bg-transparent border-dark d-flex justify-content-between">
-                            <span class="text-uppercase"><b>Total (USD)</b></span>
-                            <strong>$990</strong>
-                          </li>
-                        </ul>
-                        <div class="d-flex flex-wrap justify-content-center">
-                          <a href="cart.html" class="w-100 btn btn-dark mb-1" type="submit">View Cart</a>
-                          <a href="checkout.html" class="w-100 btn btn-primary" type="submit">Go to checkout</a>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
+      <nav id="header-nav" class="navbar navbar-expand-lg px-3">
+        <div class="container">
+          <a class="navbar-brand d-lg-none" href="index.html">
+            <img src="{% static 'images/main-logo.png' %}" class="logo">
+          </a>
+          <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
+            <div class="offcanvas-header px-4 pb-0">
+              <a class="navbar-brand" href="index.html">
+                <img src="{% static 'images/main-logo.png' %}" class="logo">
+              </a>
+              <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#bdNavbar"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul id="navbar" class="navbar-nav w-100 d-flex justify-content-between align-items-center">
+                
+                <ul class="list-unstyled d-lg-flex justify-content-md-between align-items-center">
+                  <li class="nav-item">
+                    <a class="nav-link ms-0" href="about.html">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link ms-0" href="shop.html">Shop</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle ms-0" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Pages<svg class="bi" width="18" height="18"><use xlink:href="#chevron-down"></use></svg></a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="about.html" class="dropdown-item fs-5 fw-medium">About <span class="text-primary">(PRO)</span></a>
+                      </li>
+                      <li>
+                        <a href="shop.html" class="dropdown-item fs-5 fw-medium">Shop <span class="text-primary">(PRO)</span></a>
+                      </li>
+                      <li>
+                        <a href="single-product.html" class="dropdown-item fs-5 fw-medium">Single Product <span class="text-primary">(PRO)</span></a>
+                      </li>
+                      <li>
+                        <a href="login.html" class="dropdown-item fs-5 fw-medium">Account <span class="text-primary">(PRO)</span></a>
+                      </li>
+                      <li>
+                        <a href="cart.html" class="dropdown-item fs-5 fw-medium">Cart <span class="text-primary">(PRO)</span></a>
+                      </li>
+                      <li>
+                        <a href="checkout.html" class="dropdown-item fs-5 fw-medium">Checkout <span class="text-primary">(PRO)</span></a>
+                      </li>
+                      <li>
+                        <a href="blog.html" class="dropdown-item fs-5 fw-medium">Blog <span class="text-primary">(PRO)</span></a>
+                      </li>
+                      <li>
+                        <a href="single-post.html" class="dropdown-item fs-5 fw-medium">Single Post <span class="text-primary">(PRO)</span></a>
+                      </li>
+                      <li>
+                        <a href="contact.html" class="dropdown-item fs-5 fw-medium">Contact <span class="text-primary">(PRO)</span></a>
+                      </li>
+                    </ul>
+                  </li>                  
                 </ul>
+                
+                <a class="navbar-brand d-none d-lg-block me-0" href="index.html">
+                  <img src="{% static 'images/logoatrio.png' %}" style="height: 100px" class="logo">
+                </a>
+
+                <ul class="list-unstyled d-lg-flex justify-content-between align-items-center">
+                  <li class="nav-item search-item">
+                    <div id="search-bar" class="border-right d-none d-lg-block">
+                      <form action="" autocomplete="on">
+                        <input id="search" class="text-dark" name="search" type="text" placeholder="Search Here...">
+                        <a type="submit" class="nav-link me-0" href="#">Search</a>
+                      </form>
+                    </div>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link me-0" href="login.html">Account</a>
+                  </li>
+                  <!-- Snipcart summary and View cart button -->
+                    <section class="navbar-section snipcart-summary">
+                      <div class="input-group input-line">
+                          <a href="" class="btn btn-primary snipcart-checkout">
+                              <i class="icon icon-apps"></i>
+                              View cart (<span class="snipcart-total-items">0</span>)
+                          </a>
+                      </div>
+                    </section>
+                </ul>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+
+    <section id="billboard" class="position-relative overflow-hidden">
+      <div class="swiper main-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" style=" background-size: cover; background-repeat: no-repeat; height: 100vh; background-position: center;">
+            <div class="container ">
+              <div class="row">
+                <div class="offset-md-1 col-md-6">
+                  <div class="banner-content" >
+                    <h2 style=" color: #ffffef;">Ceramic soft pot</h2>
+                    <p class="fs-3" style=" color: #ffffef;">This ceramic soft pot is specially designed by concept of traditional designs.</p>
+                    <a href="single-product.html" class="btn" style=" color: #ffffef;">Shop Now</a>
+                  </div>
+                </div>
+                <div class="col-md-5"></div>
               </div>
             </div>
           </div>
-        </nav>
-    </header>
-
-
-
-
-    <header class="navbar">
-
-        <section class="navbar-section">
-            <a href="/" class="navbar-brand mr-2">
-                Products
-            </a>
-        </section>
-
-        <!-- Snipcart summary and View cart button -->
-        <section class="navbar-section snipcart-summary">
-            <div class="input-group input-line">
-                <a href="" class="btn btn-primary snipcart-checkout">
-                    <i class="icon icon-apps"></i>
-                    View cart (<span class="snipcart-total-items">0</span>)
-                </a>
+          <div class="swiper-slide" style="background-image: url(images/banner-image1.jpg); background-size: cover; background-repeat: no-repeat; height: 100vh; background-position: center;">
+            <div class="container">
+              <div class="row">
+                <div class="offset-md-6 col-md-6">
+                  <div class="banner-content">
+                    <h2>Shiny Black Pot</h2>
+                    <p class="fs-3">Beautiful shiny black pot is designed for minimalist decors.</p>
+                    <a href="single-product.html" class="btn">Shop Now</a>
+                  </div>
+                </div>
+                <div class="col-md-5"></div>
+              </div>
             </div>
-        </section>
+          </div>
+          <div class="swiper-slide" style="background-image: url(images/banner-image2.jpg); background-size: cover; background-repeat: no-repeat; height: 100vh; background-position: center;">
+            <div class="container">
+              <div class="row">
+                <div class="offset-md-1 col-md-6">
+                  <div class="banner-content">
+                    <h2>Shell Shape Decor</h2>
+                    <p class="fs-3">Buy this beautiful unique pieces of shell shape vase decors for your plants of room.</p>
+                    <a href="single-product.html" class="btn">Shop Now</a>
+                  </div>
+                </div>
+                <div class="col-md-5"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="main-slider-pagination position-absolute text-center"></div>
+      </div>
+    </section>
 
-    </header>
-</div>
 
-<div class="container grid-lg">
-    {% block content %}{% endblock %}
-</div>
+    <div class="container grid-lg">
+      {% block content %}{% endblock %}
+    </div>
+  
+  
+      {% block extra_js %}
+          {# Override this in templates to add extra javascript #}
+      {% endblock %}
 
 
-{% block extra_js %}
-    {# Override this in templates to add extra javascript #}
-{% endblock %}
-    </body>
+
+
+
+    <footer id="footer" class="overflow-hidden padding-xlarge pb-0">
+      <div class="container">
+        <div class="row">
+          <div class="footer-top-area pb-5">
+            <div class="row d-flex flex-wrap justify-content-between">
+              <div class="col-lg-3 col-sm-6 pb-3" data-aos="fade" data-aos-easing="ease-in" data-aos-duration="1000" data-aos-once="true">
+                <div class="footer-menu">
+                  <img src="{% static 'images/logoatrio.png' %}"style="height: 200px" alt="logo" class="mb-2">
+                  <p>Nunc tristique facilisis consectetur vivamus ut porta porta aliquam vitae vehicula leo nullam urna lectus.</p>
+                </div>
+              </div>
+              <div class="col-lg-2 col-sm-6 pb-3" data-aos="fade" data-aos-easing="ease-in" data-aos-duration="1200" data-aos-once="true">
+                <div class="footer-menu">
+                  <h4 class="widget-title pb-2">Quick Links</h4>
+                  <ul class="menu-list list-unstyled">
+                    <li class="menu-item pb-2">
+                      <a href="about.html">About</a>
+                    </li>
+                    <li class="menu-item pb-2">
+                      <a href="shop.html">Shop</a>
+                    </li>
+                    <li class="menu-item pb-2">
+                      <a href="contact.html">Contact</a>
+                    </li>
+                    <li class="menu-item pb-2">
+                      <a href="login.html">Account</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-3 col-sm-6 pb-3" data-aos="fade" data-aos-easing="ease-in" data-aos-duration="1400" data-aos-once="true">
+                <div class="footer-menu contact-item">
+                  <h4 class="widget-title pb-2">Contact info</h4>
+                  <ul class="menu-list list-unstyled">
+                    <li class="menu-item pb-2">
+                      <a href="#">Tea Berry, Marinette, USA</a>
+                    </li>
+                    <li class="menu-item pb-2">
+                      <a href="#">+55 111 222 333 44</a>
+                    </li>
+                    <li class="menu-item pb-2">
+                      <a href="mailto:">yourinfo@gmail.com</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-3 col-sm-6 pb-3" data-aos="fade" data-aos-easing="ease-in" data-aos-duration="1600" data-aos-once="true">
+                <div class="footer-menu">
+                  <h4 class="widget-title pb-2">Social info</h4>
+                  <p>You can follow us on our social platforms to get updates.</p>
+                  <div class="social-links">
+                    <ul class="d-flex list-unstyled">
+                      <li>
+                        <a href="#">
+                          <svg class="facebook">
+                            <use xlink:href="#facebook">
+                          </svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <svg class="instagram">
+                            <use xlink:href="#instagram">
+                          </svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <svg class="twitter">
+                            <use xlink:href="#twitter">
+                          </svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <svg class="linkedin">
+                            <use xlink:href="#linkedin">
+                          </svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <svg class="youtube">
+                            <use xlink:href="#youtube">
+                          </svg>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+      </div>
+
+
+
+
+
+    </footer>
+    <div id="footer-bottom">
+      <div class="container">
+        <div class="row d-flex flex-wrap justify-content-between">
+          <div class="col-12">
+            <div class="copyright">
+              <p>© Copyright 2024 Atrio. Design by <a href="https://www.stefanolacorazza.com/" target="_blank"><b>Stefano Lacorazza</b></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+  
+  
+  
+  </body>
+
+
 </html>
