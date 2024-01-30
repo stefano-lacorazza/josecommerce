@@ -50,10 +50,11 @@ CSS STRUCTURE:
 :root {
   --accent-color:             #777777;
   --white-color:              #fff;
+  --atrio-color:              #ffffef;
   --black-color:              #151412;
   --light-dark:               #36332F;
   --gray-color:               #F3F3F3;
-  --gray-color-300:           #F7F7F7;
+  --gray-color-300:           #ffffef;
   --gray-color-400:           #EFEFEF;
   --gray-color-500:           #AEAEAE;
   --gray-color-600:           #999999;
@@ -353,7 +354,7 @@ img.zoom-in {
   position: fixed;
   width: 100%;
   height: 100%;
-  background-color: #f7f7f7eb;
+  background-color: #ffffef;
   display: flex;
   align-items: center;
   z-index: 99999999;
@@ -495,7 +496,7 @@ img.zoom-in {
   transition: background-color 0.3s ease;
 }
 .site-header.sticky{
-  background-color: var(--white-color);
+  background-color: var(--atrio-color);
 }
 .navbar-toggler svg.navbar-icon {
   width: 50px;
