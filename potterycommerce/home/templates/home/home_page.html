@@ -1,9 +1,21 @@
-<!-- /.home/templates/home/home_template.html -->
 {% extends "base.html" %}
 {% load wagtailimages_tags %}
-
+{% load static %}
+{% load  static  wagtailsettings_tags %}
+{% load static wagtailcore_tags wagtailuserbar %}
+{% get_settings %}
 {% block content %}
 
+
+<style>
+
+
+  .swiper-slide {
+    background-image: url("{% static 'images/ceramicas/vasos1.jpeg' %}");
+    
+  }
+
+  </style>
 
 <section id="billboard" class="position-relative overflow-hidden">
     <div class="swiper main-swiper">
