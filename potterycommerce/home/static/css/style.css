@@ -949,3 +949,7 @@ h5.widget-title {
 .post-navigation:focus svg {
   fill: var(--primary-color);
 }
+
+#containerbtn{width:100%} 
+.btn-box{display:block; width:25%; float:left;}
+.btn-box button{ width:100%;}
