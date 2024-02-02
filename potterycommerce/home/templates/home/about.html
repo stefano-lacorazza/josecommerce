@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags %}
+{% load static %}
+{% load  static  wagtailsettings_tags %}
+{% load static wagtailcore_tags wagtailuserbar %}
+{% get_settings %}
+{% block content %}
+
+<section class="hero-section jarallax d-flex align-items-center justify-content-center padding-medium pb-5" style="background: url(images/hero-img.jpg) no-repeat;">
+    <div class="hero-content">
+      <div class="container">
+        <div class="row">
+          <div class="text-center padding-large no-padding-bottom">
+            <h1>Acerca</h1>
+            <div class="breadcrumbs">
+              <span class="item">
+                <a href="index.html">Home ></a>
+              </span>
+              <span class="item">Acerca</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+{% endblock %}

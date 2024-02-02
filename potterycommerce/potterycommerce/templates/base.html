@@ -99,10 +99,10 @@
                 
                 <ul class="list-unstyled d-lg-flex justify-content-md-between align-items-center">
                   <li class="nav-item">
-                    <a class="nav-link ms-0" href="about.html">Acerca</a>
+                    <a class="nav-link ms-0" href="{% url 'about' %}">Acerca</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link ms-0" href="shop.html">Tienda</a>
+                    <a class="nav-link ms-0" href="{% url 'shop' %}">Tienda</a>
                   </li>
                       
                 </ul>
@@ -126,12 +126,12 @@
 
                   <!-- Snipcart summary and View cart button -->
                     <section class="navbar-section snipcart-summary">
-                      <div class="input-group input-line">
-                          <a href="" class="btn btn-primary snipcart-checkout">
+                      
+                          <a href="" class="btn btn-primary snipcart-checkout" style="background-color:#110601;">
                               <i class="icon icon-apps"></i>
                               Carro (<span class="snipcart-total-items">0</span>)
                           </a>
-                      </div>
+                      
                     </section>
                 </ul>
               </ul>
