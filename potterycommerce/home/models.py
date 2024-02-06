@@ -56,6 +56,7 @@ class ProductCustomField(Orderable):
 
 class HomePage(Page):
     def get_context(self, request):
+        
         context = super().get_context(request)
 
         #context['products'] = Product.objects.child_of(self).live()
@@ -63,6 +64,26 @@ class HomePage(Page):
         #products = ['a','bb']
         context['products'] = products
         return context
+    
+
+    
+
+class ShopPage(Page):
+    def get_context(self, request):
+
+        siblings = Page.objects.sibling_of(self)
+        context = super().get_context(request)
+
+        #context['products'] = Product.objects.child_of(self).live()
+        products =  Product.objects.child_of(siblings[0]).live()
+
+        #products = ['a','bb']
+        context['products'] = products
+
+        return context
+    
+
+
 
 @register_setting
 class SnipcartSettings(BaseSiteSetting):
