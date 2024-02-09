@@ -9,69 +9,85 @@
 
 <style>
 
+/* CSS class for the first slider. It sets the background image to 'vasos1.jpeg' */
+.slider1 {
+  background-image: url("{% static 'images/ceramicas/vasos1.jpeg' %}");
+}
 
+/* CSS class for the second slider. It sets the background image to 'ovo.jpeg' */
+.slider2 {
+  background-image: url("{% static 'images/ceramicas/ovo.jpeg' %}");
+}
 
-  .slider1 {
-    background-image: url("{% static 'images/ceramicas/vasos1.jpeg' %}");
-    
-  }
-  .slider2 {
-    background-image: url("{% static 'images/ceramicas/ovo.jpeg' %}");
-    
-  }
-  .slider3 {
-    background-image: url("{% static 'images/ceramicas/vasos3.jpeg' %}");
-    
-  }
-
+/* CSS class for the third slider. It sets the background image to 'vasos3.jpeg' */
+.slider3 {
+  background-image: url("{% static 'images/ceramicas/vasos3.jpeg' %}");
+}
   </style>
 
+<!-- The main billboard section -->
 <section id="billboard" class="position-relative overflow-hidden">
     <div class="swiper main-swiper">
       <div class="swiper-wrapper">
+        <!-- The first slide -->
         <div class="swiper-slide slider1" style=" background-size: cover; background-repeat: no-repeat; height: 100vh; background-position: center;">
           <div class="container ">
             <div class="row">
               <div class="offset-md-1 col-md-6">
                 <div class="banner-content" >
+                  <!-- The title of the slide -->
                   <h2 style=" color: #ffffef;">Olla ceramica</h2>
+                  <!-- The description of the slide -->
                   <p class="fs-3" style=" color: #ffffef;">Esta olla de cerámica suave está especialmente diseñada según el concepto de diseños tradicionales.</p>
+                  <!-- The link to the product page -->
                   <a href="single-product.html" class="btn" style=" color: #ffffef;">Shop Now</a>
                 </div>
               </div>
+              <!-- An empty column for layout purposes -->
               <div class="col-md-5"></div>
             </div>
           </div>
         </div>
+        <!-- The second slide -->
         <div class="swiper-slide slider2" style=" background-size: cover; background-repeat: no-repeat; height: 100vh; background-position: center;">
           <div class="container">
             <div class="row">
               <div class="offset-md-6 col-md-6">
                 <div class="banner-content">
+                  <!-- The title of the slide -->
                   <h2 style=" color: #ffffef;">Otras ollas pero cafes</h2>
+                  <!-- The description of the slide -->
                   <p class="fs-3" style=" color: #ffffef;">Esta olla de cerámica suave está especialmente diseñada según el concepto de diseños tradicionales.</p>
+                  <!-- The link to the product page -->
                   <a href="single-product.html" class="btn" style=" color: #ffffef;">Shop Now</a>
                 </div>
               </div>
+              <!-- An empty column for layout purposes -->
               <div class="col-md-5"></div>
             </div>
           </div>
         </div>
+        <!-- The third slide -->
         <div class="swiper-slide slider3" style="background-size: cover; background-repeat: no-repeat; height: 100vh; background-position: center;">
           <div class="container">
             <div class="row">
               <div class="offset-md-1 col-md-6">
                 <div class="banner-content">
+                  <!-- The title of the slide -->
                   <h2 style=" color: #ffffef;">Creo que es un bong</h2>
+                  <!-- The description of the slide -->
                   <p class="fs-3" style=" color: #ffffef;">Esta olla de cerámica suave está especialmente diseñada según el concepto de diseños tradicionales.</p>
+                  <!-- The link to the product page -->
                   <a href="single-product.html" class="btn" style=" color: #ffffef;">Shop Now</a>
                 </div>
               </div>
+              <!-- An empty column for layout purposes -->
               <div class="col-md-5"></div>
             </div>
           </div>
         </div>
       </div>
+      <!-- The pagination for the main slider -->
       <div class="main-slider-pagination position-absolute text-center"></div>
     </div>
   </section>

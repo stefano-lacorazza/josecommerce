@@ -68,18 +68,19 @@ class HomePage(Page):
 
     
 
+# Defining a new model called ShopPage that inherits from the Page model
 class ShopPage(Page):
+    # Overriding the get_context method to add additional context
     def get_context(self, request):
-
+        # Getting all sibling pages of the current page
         siblings = Page.objects.sibling_of(self)
+        # Getting the context from the parent class
         context = super().get_context(request)
 
-        #context['products'] = Product.objects.child_of(self).live()
+        # Getting all live child pages of the first sibling that are instances of the Product model
         products =  Product.objects.child_of(siblings[0]).live()
 
-        #products = ['a','bb']
         context['products'] = products
-
         return context
     
 
