@@ -52,30 +52,39 @@
 
 
           
+          <!-- Start of loop through each product in the products list -->
           {% for product in products %}
 
-
-          <div class="col-lg-4 col-md-6">
-            <div class="product-card mb-3 position-relative">
-              <div class="image-holder zoom-effect">
-                {% image product.image fill-1000x1000 as tmp_image %}
-                <img src="{{ tmp_image.url }}" alt="product-item" class="img-fluid zoom-in">
-                <div class="cart-concern position-absolute">
-                  <div class="cart-button">
-                    <a href="{{ product.get_url }}" class="btn" style="color: white">Ver</a>
+            <!-- Each product is displayed in a column that takes up 4 columns on large screens and 6 columns on medium screens -->
+            <div class="col-lg-4 col-md-6">
+              <div class="product-card mb-3 position-relative">
+                <!-- The image holder with a zoom effect -->
+                <div class="image-holder zoom-effect">
+                  <!-- The product image is loaded and resized to fit a 1000x1000 pixel box -->
+                  {% image product.image fill-1000x1000 as tmp_image %}
+                  <!-- The product image is displayed -->
+                  <img src="{{ tmp_image.url }}" alt="product-item" class="img-fluid zoom-in">
+                  <div class="cart-concern position-absolute">
+                    <div class="cart-button">
+                      <!-- A link to the product's page -->
+                      <a href="{{ product.get_url }}" class="btn" style="color: white">Ver</a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="card-detail text-center pt-3 pb-2">
-                <h5 class="card-title fs-3 text-capitalize">
-                  <a href="{{ product.get_url }}" style="color: #110601">{{ product.title }}</a>
-                </h5>
-                <span class="item-price text-primary fs-3 fw-light">${{ product.price }}</span>
+                <!-- The product details -->
+                <div class="card-detail text-center pt-3 pb-2">
+                  <!-- The product title -->
+                  <h5 class="card-title fs-3 text-capitalize">
+                    <!-- A link to the product's page -->
+                    <a href="{{ product.get_url }}" style="color: #110601">{{ product.title }}</a>
+                  </h5>
+                  <!-- The product price -->
+                  <span class="item-price text-primary fs-3 fw-light">${{ product.price }}</span>
+                </div>
               </div>
             </div>
-          </div>
-         {% endfor %}
 
+          {% endfor %}
 
 
 
