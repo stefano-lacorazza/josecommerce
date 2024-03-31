@@ -17,8 +17,8 @@ import sys
 import dj_database_url
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-#BASE_DIR = os.path.dirname(PROJECT_DIR)
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(PROJECT_DIR)
+#BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
