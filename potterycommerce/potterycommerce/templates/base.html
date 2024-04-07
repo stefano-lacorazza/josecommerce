@@ -1,285 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    {% load static %}
-    {% load  static  wagtailsettings_tags %}
-    {% load static wagtailcore_tags wagtailuserbar %}
-    {% get_settings %}
-    
-    {# Global stylesheets #}
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
-    {# Snipcart #}
 
-    {% if settings.home.SnipcartSettings.api_key %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-        <script src="https://cdn.snipcart.com/scripts/2.0/snipcart.js" id="snipcart" data-api-key="{{ settings.home.SnipcartSettings.api_key }}"></script>
-        <link href="https://cdn.snipcart.com/themes/2.0/base/snipcart.min.css" type="text/css" rel="stylesheet" />
-    {% endif %}
+<head>
+  {% load static %}
+  {% load static wagtailsettings_tags %}
+  {% load static wagtailcore_tags wagtailuserbar %}
+  {% get_settings %}
+
+  {# Global stylesheets #}
+  <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+  {# Snipcart #}
+
+  {% if settings.home.SnipcartSettings.api_key %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script src="https://cdn.snipcart.com/scripts/2.0/snipcart.js" id="snipcart"
+    data-api-key="{{ settings.home.SnipcartSettings.api_key }}"></script>
+  <link href="https://cdn.snipcart.com/themes/2.0/base/snipcart.min.css" type="text/css" rel="stylesheet" />
+  {% endif %}
 
 
-    <title>
-      {% block title %}
-      {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
-      {% endblock %}
-      {% block title_suffix %}
-      {% wagtail_site as current_site %}
-      {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
-      {% endblock %}
-    </title>
-
-    <meta charset="utf-8">
-
-    <link rel="icon" type="image/x-icon" href="{% static 'images/Favicon_16x16_N.png' %}">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="author" content="">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    {% if page.search_description %}
-        <meta name="description" content="{{ page.search_description }}" />
-        {% endif %}
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-        {# Force all links in the live preview panel to be opened in a new tab #}
-        {% if request.in_preview_panel %}
-        <base target="_blank">
-    {% endif %}
-
-    {# Global stylesheets #}
-    <!--<link rel="stylesheet" type="text/css" href="{% static 'css/potterycommerce.css' %}"> -->
-
-    <link rel="stylesheet" type="text/css" href="{% static 'css/vendor.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap" rel="stylesheet">
-    
-    {% block extra_css %}
-    {# Override this in templates to add extra stylesheets #}
+  <title>
+    {% block title %}
+    {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
     {% endblock %}
-    
+    {% block title_suffix %}
+    {% wagtail_site as current_site %}
+    {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
+    {% endblock %}
+  </title>
+
+  <meta charset="utf-8">
+
+  <link rel="icon" type="image/x-icon" href="{% static 'images/Favicon_16x16_N.png' %}">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="author" content="">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  {% if page.search_description %}
+  <meta name="description" content="{{ page.search_description }}" />
+  {% endif %}
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  {# Force all links in the live preview panel to be opened in a new tab #}
+  {% if request.in_preview_panel %}
+  <base target="_blank">
+  {% endif %}
+
+  {# Global stylesheets #}
+  <!--<link rel="stylesheet" type="text/css" href="{% static 'css/potterycommerce.css' %}"> -->
+
+  <link rel="stylesheet" type="text/css" href="{% static 'css/vendor.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Italiana&family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap"
+    rel="stylesheet">
+
+  {% block extra_css %}
+  {# Override this in templates to add extra stylesheets #}
+  {% endblock %}
 
 
 
 
-    <script src="{% static 'js/modernizr.js' %}"></script>
-  </head>
+
+  <script src="{% static 'js/modernizr.js' %}"></script>
+</head>
 
 
-  <body class="{% block body_class %}{% endblock %}">
-
-    
-    {% wagtailuserbar %}
-    
+<body class="{% block body_class %}{% endblock %}">
 
 
-    
-<!-- The main header of the site -->
-<header id="header" class="site-header">
-  <!-- The main navigation bar -->
-  <nav id="header-nav" class="navbar navbar-expand-lg px-3">
-    <div class="container">
-      <!-- The site logo (only visible on small screens) -->
-      <a class="navbar-brand d-lg-none" href="/">
-        <img src="{% static 'images/main-logo.png' %}" class="logo">
-      </a>
-      <!-- The button to toggle the navigation menu on small screens -->
-      <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
-        <div class="offcanvas-header px-4 pb-0">
-          <!-- The site logo (only visible in the offcanvas menu) -->
-          <a class="navbar-brand" href="/">
-            <img src="{% static 'images/main-logo.png' %}" class="logo">
-          </a>
-          <!-- The button to close the offcanvas menu -->
-          <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#bdNavbar"></button>
-        </div>
-        <!-- The body of the offcanvas navigation menu -->
-        <div class="offcanvas-body">
-          <!-- The main navigation links -->
-          <ul id="navbar" class="navbar-nav w-100 d-flex justify-content-between align-items-center">
-            <ul class="list-unstyled d-lg-flex justify-content-md-between align-items-center">
-              <!-- The link to the about page -->
-              <li class="nav-item">
-                <a class="nav-link ms-0" href="{% url 'about' %}">Acerca</a>
-              </li>
-              <!-- The link to the shop page -->
-              <li class="nav-item">
-                <a class="nav-link ms-0" href="/shop/">Tienda</a>
-              </li>
-            </ul>
-            <!-- The site logo (only visible on large screens) -->
-            <a class="navbar-brand d-none d-lg-block me-0" href="/">
-              <img src="{% static 'images/logoatrio.png' %}" style="height: 100px" class="logo">
+  {% wagtailuserbar %}
+
+
+
+
+  <!-- The main header of the site -->
+  <header id="header" class="site-header">
+    <!-- The main navigation bar -->
+    <nav id="header-nav" class="navbar navbar-expand-lg px-3">
+      <div class="container">
+        <!-- The site logo (only visible on small screens) -->
+        <a class="navbar-brand d-lg-none" href="/">
+          <img src="{% static 'images/main-logo.png' %}" class="logo">
+        </a>
+        <!-- The button to toggle the navigation menu on small screens -->
+        <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false"
+          aria-label="Toggle navigation">Menu</button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
+          <div class="offcanvas-header px-4 pb-0">
+            <!-- The site logo (only visible in the offcanvas menu) -->
+            <a class="navbar-brand" href="/">
+              <img src="{% static 'images/main-logo.png' %}" class="logo">
             </a>
-            <!-- The second group of navigation links -->
-            <ul class="list-unstyled d-lg-flex justify-content-between align-items-center">
-              <!-- The search bar -->
-              <li class="nav-item search-item">
-                <div id="search-bar" class="border-right d-none d-lg-block">
-                  <form action="" autocomplete="on">
-                    <input id="search" class="text-dark" name="search" type="text" placeholder="Search Here...">
-                    <a type="submit" class="nav-link me-0" href="#">Busqueda</a>
-                  </form>
-                </div>
-              </li>
-              <!-- The link to the login page -->
-              <li class="nav-item">
-                <a class="nav-link me-0" href="login.html">Cuenta</a>
-              </li>
-              <!-- The Snipcart summary and view cart button -->
-              <section class="navbar-section snipcart-summary">
-                <a href="" class="btn btn-primary snipcart-checkout" style="background-color:#110601;">
-                  <i class="icon icon-apps"></i>
-                  Carro (<span class="snipcart-total-items">0</span>)
-                </a>
-              </section>
-            </ul>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </nav>
-</header>
-
-    
-
-
-      {% block content %}{% endblock %}
-
-  
-  
-      {% block extra_js %}
-          {# Override this in templates to add extra javascript #}
-      {% endblock %}
-
-
-
-
-
-<!-- The main footer of the site -->
-<footer id="footer" class="overflow-hidden padding-xlarge pb-0">
-  <div class="container">
-    <div class="row">
-      <div class="footer-top-area pb-5">
-        <div class="row d-flex flex-wrap justify-content-between">
-          <!-- The first column of the footer (contains the site logo and a description) -->
-          <div class="col-lg-3 col-sm-6 pb-3" data-aos="fade" data-aos-easing="ease-in" data-aos-duration="1000" data-aos-once="true">
-            <div class="footer-menu">
-              <!-- The site logo -->
-              <img src="{% static 'images/logoatrio.png' %}"style="height: 100px" alt="logo" class="mb-2">
-              <!-- A description of the site -->
-              <p>Cada pieza cuenta una historia única de maestría artística y pasión por la tradición..</p>
-            </div>
+            <!-- The button to close the offcanvas menu -->
+            <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close"
+              data-bs-target="#bdNavbar"></button>
           </div>
-          <!-- The second column of the footer (contains contact information) -->
-          <div class="col-lg-3 col-sm-6 pb-3" data-aos="fade" data-aos-easing="ease-in" data-aos-duration="1400" data-aos-once="true">
-            <div class="footer-menu contact-item">
-              <!-- The title of the contact section -->
-              <h4 class="widget-title pb-2">Contacto</h4>
-              <!-- The contact information -->
-              <ul class="menu-list list-unstyled">
-                <!-- The phone number -->
-                <li class="menu-item pb-2">
-                  <a href="#">+57 314 4134242</a>
+          <!-- The body of the offcanvas navigation menu -->
+          <div class="offcanvas-body">
+            <!-- The main navigation links -->
+            <ul id="navbar" class="navbar-nav w-100 d-flex justify-content-between align-items-center">
+              <ul class="list-unstyled d-lg-flex justify-content-md-between align-items-center">
+                <!-- The link to the about page -->
+                <li class="nav-item">
+                  <a class="nav-link ms-0" href="{% url 'about' %}">Acerca</a>
                 </li>
-                <!-- The email address -->
-                <li class="menu-item pb-2">
-                  <a href="mailto:">rjoserodriguez1997@gmail.com</a>
+                <!-- The link to the shop page -->
+                <li class="nav-item">
+                  <a class="nav-link ms-0" href="/shop/">Tienda</a>
+                </li>
+                <!-- The link to the shop page -->
+                <li class="nav-item">
+                  <a class="nav-link ms-0" href="{% url 'workshop' %}">Taller</a>
                 </li>
               </ul>
-            </div>
+              <!-- The site logo (only visible on large screens) -->
+              <a class="navbar-brand d-none d-lg-block me-0" href="/">
+                <img src="{% static 'images/logoatrio.png' %}" style="height: 100px" class="logo">
+              </a>
+              <!-- The second group of navigation links -->
+              <ul class="list-unstyled d-lg-flex justify-content-between align-items-center">
+                <!-- The search bar -->
+                <li class="nav-item search-item">
+                  <div id="search-bar" class="border-right d-none d-lg-block">
+                    <form action="" autocomplete="on">
+                      <input id="search" class="text-dark" name="search" type="text" placeholder="Search Here...">
+                      <a type="submit" class="nav-link me-0" href="#">Busqueda</a>
+                    </form>
+                  </div>
+                </li>
+                <!-- The link to the login page -->
+                <li class="nav-item">
+                  <a class="nav-link me-0" href="login.html">Cuenta</a>
+                </li>
+                <!-- The Snipcart summary and view cart button -->
+                <section class="navbar-section snipcart-summary">
+                  <a href="" class="btn btn-primary snipcart-checkout" style="background-color:#110601;">
+                    <i class="icon icon-apps"></i>
+                    Carro (<span class="snipcart-total-items">0</span>)
+                  </a>
+                </section>
+              </ul>
+            </ul>
           </div>
-          <!-- The third column of the footer (contains social media links) -->
-          <div class="col-lg-3 col-sm-6 pb-3" data-aos="fade" data-aos-easing="ease-in" data-aos-duration="1600" data-aos-once="true">
-            <div class="footer-menu">
-              <!-- The title of the social media section -->
-              <h4 class="widget-title pb-2">Social</h4>
-              <!-- A description of the social media section -->
-              <p>Lista de redes sociales.</p>
-              <!-- The social media links -->
-              <div class="social-links">
-                <ul class="d-flex list-unstyled">
-                  <!-- The Facebook link -->
-                  <li>
-                    <a href="#">
-                      <svg class="facebook">
-                        <use xlink:href="#facebook">
-                      </svg>
-                    </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+
+
+  {% block content %}{% endblock %}
+
+
+
+  {% block extra_js %}
+  {# Override this in templates to add extra javascript #}
+  {% endblock %}
+
+
+
+
+
+  <!-- The main footer of the site -->
+  <footer id="footer" class="overflow-hidden padding-xlarge pb-0">
+    <div class="container">
+      <div class="row">
+        <div class="footer-top-area pb-5">
+          <div class="row d-flex flex-wrap justify-content-between">
+            <!-- The first column of the footer (contains the site logo and a description) -->
+            <div class="col-lg-3 col-sm-6 pb-3" data-aos="fade" data-aos-easing="ease-in" data-aos-duration="1000"
+              data-aos-once="true">
+              <div class="footer-menu">
+                <!-- The site logo -->
+                <img src="{% static 'images/logoatrio.png' %}" style="height: 100px" alt="logo" class="mb-2">
+                <!-- A description of the site -->
+                <p>Cada pieza cuenta una historia única de maestría artística y pasión por la tradición..</p>
+              </div>
+            </div>
+            <!-- The second column of the footer (contains contact information) -->
+            <div class="col-lg-3 col-sm-6 pb-3" data-aos="fade" data-aos-easing="ease-in" data-aos-duration="1400"
+              data-aos-once="true">
+              <div class="footer-menu contact-item">
+                <!-- The title of the contact section -->
+                <h4 class="widget-title pb-2">Contacto</h4>
+                <!-- The contact information -->
+                <ul class="menu-list list-unstyled">
+                  <!-- The phone number -->
+                  <li class="menu-item pb-2">
+                    <a href="#">+57 314 4134242</a>
                   </li>
-                  <!-- The Instagram link -->
-                  <li>
-                    <a href="#">
-                      <svg class="instagram">
-                        <use xlink:href="#instagram">
-                      </svg>
-                    </a>
-                  </li>
-                  <!-- The Twitter link -->
-                  <li>
-                    <a href="#">
-                      <svg class="twitter">
-                        <use xlink:href="#twitter">
-                      </svg>
-                    </a>
-                  </li>
-                  <!-- The LinkedIn link -->
-                  <li>
-                    <a href="#">
-                      <svg class="linkedin">
-                        <use xlink:href="#linkedin">
-                      </svg>
-                    </a>
-                  </li>
-                  <!-- The YouTube link -->
-                  <li>
-                    <a href="#">
-                      <svg class="youtube">
-                        <use xlink:href="#youtube">
-                      </svg>
-                    </a>
+                  <!-- The email address -->
+                  <li class="menu-item pb-2">
+                    <a href="mailto:">rjoserodriguez1997@gmail.com</a>
                   </li>
                 </ul>
+              </div>
+            </div>
+            <!-- The third column of the footer (contains social media links) -->
+            <div class="col-lg-3 col-sm-6 pb-3" data-aos="fade" data-aos-easing="ease-in" data-aos-duration="1600"
+              data-aos-once="true">
+              <div class="footer-menu">
+                <!-- The title of the social media section -->
+                <h4 class="widget-title pb-2">Social</h4>
+                <!-- A description of the social media section -->
+                <p>Lista de redes sociales.</p>
+                <!-- The social media links -->
+                <div class="social-links">
+                  <ul class="d-flex list-unstyled">
+                    <!-- The Facebook link -->
+                    <li>
+                      <a href="#">
+                        <svg class="facebook">
+                          <use xlink:href="#facebook">
+                        </svg>
+                      </a>
+                    </li>
+                    <!-- The Instagram link -->
+                    <li>
+                      <a href="#">
+                        <svg class="instagram">
+                          <use xlink:href="#instagram">
+                        </svg>
+                      </a>
+                    </li>
+                    <!-- The Twitter link -->
+                    <li>
+                      <a href="#">
+                        <svg class="twitter">
+                          <use xlink:href="#twitter">
+                        </svg>
+                      </a>
+                    </li>
+                    <!-- The LinkedIn link -->
+                    <li>
+                      <a href="#">
+                        <svg class="linkedin">
+                          <use xlink:href="#linkedin">
+                        </svg>
+                      </a>
+                    </li>
+                    <!-- The YouTube link -->
+                    <li>
+                      <a href="#">
+                        <svg class="youtube">
+                          <use xlink:href="#youtube">
+                        </svg>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <!-- A horizontal rule to separate the footer from the rest of the page -->
+      <hr>
     </div>
-    <!-- A horizontal rule to separate the footer from the rest of the page -->
-    <hr>
-  </div>
-</footer>
+  </footer>
 
 
 
-    <div id="footer-bottom">
-      <div class="container">
-        <div class="row d-flex flex-wrap justify-content-between">
-          <div class="col-12">
-            <div class="copyright">
-              <p>© Copyright 2024 Atrio. Design by <a href="https://www.stefanolacorazza.com/" target="_blank"><b>Stefano Lacorazza</b></a></p>
-            </div>
+  <div id="footer-bottom">
+    <div class="container">
+      <div class="row d-flex flex-wrap justify-content-between">
+        <div class="col-12">
+          <div class="copyright">
+            <p>© Copyright 2024 Atrio. Design by <a href="https://www.stefanolacorazza.com/" target="_blank"><b>Stefano
+                  Lacorazza</b></a></p>
           </div>
         </div>
       </div>
     </div>
-    
-    <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/plugins.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
-  
-  
-  
-  </body>
+  </div>
+
+  <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/plugins.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+
+
+
+</body>
 
 
 </html>
