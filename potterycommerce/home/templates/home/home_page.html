@@ -1,106 +1,115 @@
 {% extends "base.html" %}
 {% load wagtailimages_tags %}
 {% load static %}
-{% load  static  wagtailsettings_tags %}
+{% load static wagtailsettings_tags %}
 {% load static wagtailcore_tags wagtailuserbar %}
 {% get_settings %}
 {% block content %}
 
 
 <style>
+  /* CSS class for the first slider. It sets the background image to 'vasos1.jpeg' */
+  .slider1 {
+    background-image: url("{% static 'images/ceramicas/vasos1.jpeg' %}");
+  }
 
-/* CSS class for the first slider. It sets the background image to 'vasos1.jpeg' */
-.slider1 {
-  background-image: url("{% static 'images/ceramicas/vasos1.jpeg' %}");
-}
+  /* CSS class for the second slider. It sets the background image to 'ovo.jpeg' */
+  .slider2 {
+    background-image: url("{% static 'images/ceramicas/ovo.jpeg' %}");
+  }
 
-/* CSS class for the second slider. It sets the background image to 'ovo.jpeg' */
-.slider2 {
-  background-image: url("{% static 'images/ceramicas/ovo.jpeg' %}");
-}
-
-/* CSS class for the third slider. It sets the background image to 'vasos3.jpeg' */
-.slider3 {
-  background-image: url("{% static 'images/ceramicas/vasos3.jpeg' %}");
-}
-  </style>
+  /* CSS class for the third slider. It sets the background image to 'vasos3.jpeg' */
+  .slider3 {
+    background-image: url("{% static 'images/ceramicas/vasos3.jpeg' %}");
+  }
+</style>
 
 <!-- The main billboard section -->
 <section id="billboard" class="position-relative overflow-hidden">
-    <div class="swiper main-swiper">
-      <div class="swiper-wrapper">
-        <!-- The first slide -->
-        <div class="swiper-slide slider1" style=" background-size: cover; background-repeat: no-repeat; height: 100vh; background-position: center;">
-          <div class="container ">
-            <div class="row">
-              <div class="offset-md-1 col-md-6">
-                <div class="banner-content" >
-                  <!-- The title of the slide -->
-                  <h2 style=" color: #ffffef;">Olla ceramica</h2>
-                  <!-- The description of the slide -->
-                  <p class="fs-3" style=" color: #ffffef;">Esta olla de cerámica suave está especialmente diseñada según el concepto de diseños tradicionales.</p>
-                  <!-- The link to the product page -->
-                  <a href="single-product.html" class="btn" style=" color: #ffffef;">Shop Now</a>
-                </div>
+  <div class="swiper main-swiper">
+    <div class="swiper-wrapper">
+      <!-- The first slide -->
+      <div class="swiper-slide slider1"
+        style=" background-size: cover; background-repeat: no-repeat; height: 100vh; background-position: center;">
+        <div class="container ">
+          <div class="row">
+            <div class="offset-md-1 col-md-6">
+              <div class="banner-content">
+                <!-- The title of the slide -->
+                <h2 style=" color: #ffffef;">Olla ceramica</h2>
+                <!-- The description of the slide -->
+                <p class="fs-3" style=" color: #ffffef;">Esta olla de cerámica suave está especialmente diseñada según
+                  el concepto de diseños tradicionales.</p>
+                <!-- The link to the product page -->
+                <a href="single-product.html" class="btn" style=" color: #ffffef;">Tienda</a>
               </div>
-              <!-- An empty column for layout purposes -->
-              <div class="col-md-5"></div>
             </div>
-          </div>
-        </div>
-        <!-- The second slide -->
-        <div class="swiper-slide slider2" style=" background-size: cover; background-repeat: no-repeat; height: 100vh; background-position: center;">
-          <div class="container">
-            <div class="row">
-              <div class="offset-md-6 col-md-6">
-                <div class="banner-content">
-                  <!-- The title of the slide -->
-                  <h2 style=" color: #ffffef;">Otras ollas pero cafes</h2>
-                  <!-- The description of the slide -->
-                  <p class="fs-3" style=" color: #ffffef;">Esta olla de cerámica suave está especialmente diseñada según el concepto de diseños tradicionales.</p>
-                  <!-- The link to the product page -->
-                  <a href="single-product.html" class="btn" style=" color: #ffffef;">Shop Now</a>
-                </div>
-              </div>
-              <!-- An empty column for layout purposes -->
-              <div class="col-md-5"></div>
-            </div>
-          </div>
-        </div>
-        <!-- The third slide -->
-        <div class="swiper-slide slider3" style="background-size: cover; background-repeat: no-repeat; height: 100vh; background-position: center;">
-          <div class="container">
-            <div class="row">
-              <div class="offset-md-1 col-md-6">
-                <div class="banner-content">
-                  <!-- The title of the slide -->
-                  <h2 style=" color: #ffffef;">Creo que es un bong</h2>
-                  <!-- The description of the slide -->
-                  <p class="fs-3" style=" color: #ffffef;">Esta olla de cerámica suave está especialmente diseñada según el concepto de diseños tradicionales.</p>
-                  <!-- The link to the product page -->
-                  <a href="single-product.html" class="btn" style=" color: #ffffef;">Shop Now</a>
-                </div>
-              </div>
-              <!-- An empty column for layout purposes -->
-              <div class="col-md-5"></div>
-            </div>
+            <!-- An empty column for layout purposes -->
+            <div class="col-md-5"></div>
           </div>
         </div>
       </div>
-      <!-- The pagination for the main slider -->
-      <div class="main-slider-pagination position-absolute text-center"></div>
+      <!-- The second slide -->
+      <div class="swiper-slide slider2"
+        style=" background-size: cover; background-repeat: no-repeat; height: 100vh; background-position: center;">
+        <div class="container">
+          <div class="row">
+            <div class="offset-md-6 col-md-6">
+              <div class="banner-content">
+                <!-- The title of the slide -->
+                <h2 style=" color: #ffffef;">Otras ollas pero cafes</h2>
+                <!-- The description of the slide -->
+                <p class="fs-3" style=" color: #ffffef;">Esta olla de cerámica suave está especialmente diseñada según
+                  el concepto de diseños tradicionales.</p>
+                <!-- The link to the product page -->
+                <a href="single-product.html" class="btn" style=" color: #ffffef;">Tienda</a>
+              </div>
+            </div>
+            <!-- An empty column for layout purposes -->
+            <div class="col-md-5"></div>
+          </div>
+        </div>
+      </div>
+      <!-- The third slide -->
+      <div class="swiper-slide slider3"
+        style="background-size: cover; background-repeat: no-repeat; height: 100vh; background-position: center;">
+        <div class="container">
+          <div class="row">
+            <div class="offset-md-1 col-md-6">
+              <div class="banner-content">
+                <!-- The title of the slide -->
+                <h2 style=" color: #ffffef;">Taller</h2>
+                <!-- The description of the slide -->
+                <p class="fs-3" style=" color: #ffffef;">Cursos de formacion y libres</p>
+                <!-- The link to the product page -->
+                <a href="{% url 'workshop' %}" class="btn" style=" color: #ffffef;">Conoce mas</a>
+              </div>
+            </div>
+            <!-- An empty column for layout purposes -->
+            <div class="col-md-5"></div>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
+    <!-- The pagination for the main slider -->
+    <div class="main-slider-pagination position-absolute text-center"></div>
+  </div>
+</section>
 
-  <section id="about" class="padding-xlarge">
-    <div class="container">
-      <div class="row">
-        <div class="offset-md-2 col-md-8">
-          <h3 class="py-3" data-aos="fade" data-aos-easing="ease-in" data-aos-duration="1500" data-aos-once="true">Atrio Cerámica corresponde al reto de pensar a través y con la arcilla.</h3>
-          <p data-aos="fade" data-aos-easing="ease-in" data-aos-duration="1800" data-aos-once="true">Atrio Cerámica en esencia representa una apuesta por un pensamiento escultórico, difuminando de este modo la frontera entre la utilidad y la obra de arte misma, haciendo del oficio, en este caso, el propio del alfarero y ceramista, un ejercicio estético, crítico, y en últimas, vital. </p>
+<section id="about" class="padding-xlarge">
+  <div class="container">
+    <div class="row">
+      <div class="offset-md-2 col-md-8">
+        <h3 class="py-3" data-aos="fade" data-aos-easing="ease-in" data-aos-duration="1500" data-aos-once="true">Atrio
+          Cerámica corresponde al reto de pensar a través y con la arcilla.</h3>
+        <p data-aos="fade" data-aos-easing="ease-in" data-aos-duration="1800" data-aos-once="true">Atrio Cerámica es una
+          escuela y taller de cerámica contemporánea que explora el pensamiento con y a través de la arcilla. </p>
+        <div style="display: flex; justify-content: center;">
+          <img src="{% static 'images/PERFIL_ARTISTA.jpg' %}" alt="artist" style="width: 80%;">
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
 {% endblock %}

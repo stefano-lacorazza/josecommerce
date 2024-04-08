@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 {% load wagtailimages_tags %}
 {% load static %}
-{% load  static  wagtailsettings_tags %}
+{% load static wagtailsettings_tags %}
 {% load static wagtailcore_tags wagtailuserbar %}
 {% get_settings %}
 {% block content %}
 
 
-<section class="hero-section jarallax d-flex align-items-center justify-content-center padding-medium pb-5" style="background: url(images/hero-img.jpg) no-repeat;">
+<section class="hero-section jarallax d-flex align-items-center justify-content-center padding-medium pb-5"
+  style="background: url(images/hero-img.jpg) no-repeat;">
   <div class="hero-content">
     <div class="container">
       <div class="row">
@@ -44,45 +45,45 @@
               <option value="">Rating (Highest)</option>
               <option value="">Rating (Lowest)</option>
               <option value="">Model (A - Z)</option>
-              <option value="">Model (Z - A)</option>   
+              <option value="">Model (Z - A)</option>
             </select>
           </div>
         </div>
         <div class="row product-content product-store">
 
 
-          
+
           <!-- Start of loop through each product in the products list -->
           {% for product in products %}
 
-            <!-- Each product is displayed in a column that takes up 4 columns on large screens and 6 columns on medium screens -->
-            <div class="col-lg-4 col-md-6">
-              <div class="product-card mb-3 position-relative">
-                <!-- The image holder with a zoom effect -->
-                <div class="image-holder zoom-effect">
-                  <!-- The product image is loaded and resized to fit a 1000x1000 pixel box -->
-                  {% image product.image fill-1000x1000 as tmp_image %}
-                  <!-- The product image is displayed -->
-                  <img src="{{ tmp_image.url }}" alt="product-item" class="img-fluid zoom-in">
-                  <div class="cart-concern position-absolute">
-                    <div class="cart-button">
-                      <!-- A link to the product's page -->
-                      <a href="{{ product.get_url }}" class="btn" style="color: white">Ver</a>
-                    </div>
+          <!-- Each product is displayed in a column that takes up 4 columns on large screens and 6 columns on medium screens -->
+          <div class="col-lg-4 col-md-6">
+            <div class="product-card mb-3 position-relative">
+              <!-- The image holder with a zoom effect -->
+              <div class="image-holder zoom-effect">
+                <!-- The product image is loaded and resized to fit a 1000x1000 pixel box -->
+                {% image product.image fill-1000x1000 as tmp_image %}
+                <!-- The product image is displayed -->
+                <img src="{{ tmp_image.url }}" alt="product-item" class="img-fluid zoom-in">
+                <div class="cart-concern position-absolute">
+                  <div class="cart-button">
+                    <!-- A link to the product's page -->
+                    <a href="{{ product.get_url }}" class="btn" style="color: white">Ver</a>
                   </div>
                 </div>
-                <!-- The product details -->
-                <div class="card-detail text-center pt-3 pb-2">
-                  <!-- The product title -->
-                  <h5 class="card-title fs-3 text-capitalize">
-                    <!-- A link to the product's page -->
-                    <a href="{{ product.get_url }}" style="color: #110601">{{ product.title }}</a>
-                  </h5>
-                  <!-- The product price -->
-                  <span class="item-price text-primary fs-3 fw-light">${{ product.price }}</span>
-                </div>
+              </div>
+              <!-- The product details -->
+              <div class="card-detail text-center pt-3 pb-2">
+                <!-- The product title -->
+                <h5 class="card-title fs-3 text-capitalize">
+                  <!-- A link to the product's page -->
+                  <a href="{{ product.get_url }}" style="color: #110601">{{ product.title }}</a>
+                </h5>
+                <!-- The product price -->
+                <span class="item-price text-primary fs-3 fw-light">${{ product.price }}</span>
               </div>
             </div>
+          </div>
 
           {% endfor %}
 
@@ -93,29 +94,34 @@
 
 
 
-      
-        
-        <nav class="navigation paging-navigation text-center padding-medium" role="navigation">
-          <div class="pagination loop-pagination d-flex justify-content-center align-items-center">
-            <a href="#" class="d-flex pe-2">
-              <svg width="24" height="24"><use xlink:href="#angle-left"></use></svg>
-            </a>
-            <span aria-current="page" class="page-numbers current pe-3">1</span>
-            <a class="page-numbers pe-3" href="#">2</a>
-            <a class="page-numbers pe-3" href="#">3</a>
-            <a class="page-numbers pe-3" href="#">4</a>
-            <a class="page-numbers" href="#">5</a>
-            <a href="#" class="d-flex ps-2">
-              <svg width="24" height="24"><use xlink:href="#angle-right"></use></svg>
-            </a>
-          </div>
-        </nav>
+
+
+          <nav class="navigation paging-navigation text-center padding-medium" role="navigation">
+            <div class="pagination loop-pagination d-flex justify-content-center align-items-center">
+              <a href="#" class="d-flex pe-2">
+                <svg width="24" height="24">
+                  <use xlink:href="#angle-left"></use>
+                </svg>
+              </a>
+              <span aria-current="page" class="page-numbers current pe-3">1</span>
+              <a class="page-numbers pe-3" href="#">2</a>
+              <a class="page-numbers pe-3" href="#">3</a>
+              <a class="page-numbers pe-3" href="#">4</a>
+              <a class="page-numbers" href="#">5</a>
+              <a href="#" class="d-flex ps-2">
+                <svg width="24" height="24">
+                  <use xlink:href="#angle-right"></use>
+                </svg>
+              </a>
+            </div>
+          </nav>
       </main>
       <aside class="col-md-3">
         <div class="sidebar">
           <div class="widget-menu">
             <div class="widget-search-bar">
-              <form role="search" method="get" class="position-relative d-flex justify-content-between align-items-center border-bottom border-dark py-1">
+              <form role="search" method="get"
+                class="position-relative d-flex justify-content-between align-items-center border-bottom border-dark py-1">
                 <input class="search-field" placeholder="Buscar" type="search">
                 <div class="search-icon position-absolute end-0">
                   <a href="#">
@@ -125,7 +131,7 @@
                   </a>
                 </div>
               </form>
-            </div> 
+            </div>
           </div>
           <div class="widget-product-categories pt-5">
             <h5 class="widget-title text-decoration-underline text-uppercase">Colecciones</h5>
@@ -164,7 +170,7 @@
               </li>
             </ul>
           </div>
-          
+
         </div>
       </aside>
     </div>
