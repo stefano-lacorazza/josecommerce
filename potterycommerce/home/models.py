@@ -31,6 +31,57 @@ class Product(Page):
         InlinePanel("images", label="Product Images"),
     ]
 
+    def get_context(self, request):
+        context = super().get_context(request)
+        product_images = ProductImage.objects.all()
+        cntx_product_images = []
+        for product_image in product_images:
+            if product_image.product == self:
+                cntx_product_images.append(product_image)
+        context["product_images"] = cntx_product_images
+        return context
+
+
+class ShopPage(Page):
+    def get_context(self, request):
+        context = super().get_context(request)
+
+        siblings = Page.objects.sibling_of(self)
+        products = Product.objects.child_of(siblings[0]).live()
+        collections = ProductCollection.objects.child_of(siblings[0]).live()
+
+        # Query all ProductImage objects related to the products
+        product_images = ProductImage.objects.all()
+        for product in products:
+            for product_image in product_images:
+                if product_image.product == product:
+                    product.image = product_image.image
+
+        context["products"] = products
+        context["collections"] = collections
+        context["product_images"] = product_images
+
+        return context
+
+
+class HomePage(Page):
+    def get_context(self, request):
+        context = super().get_context(request)
+
+        products = Product.objects.child_of(self.get_descendants()[0]).live()
+        collections = ProductCollection.objects.child_of(
+            self.get_descendants()[0]
+        ).live()
+
+        # Query all ProductImage objects related to the products
+        # product_images = ProductImage.objects.filter(product__in=products)
+
+        context["products"] = products
+        context["collections"] = collections
+        # context["product_images"] = product_images
+
+        return context
+
 
 class ProductCustomField(Orderable):
     product = ParentalKey(
@@ -129,43 +180,6 @@ class CollectionImage(models.Model):
     panels = [
         FieldPanel("image"),
     ]
-
-
-class ShopPage(Page):
-    def get_context(self, request):
-        context = super().get_context(request)
-
-        siblings = Page.objects.sibling_of(self)
-        products = Product.objects.child_of(siblings[0]).live()
-        collections = ProductCollection.objects.child_of(siblings[0]).live()
-
-        # Query all ProductImage objects related to the products
-        product_images = ProductImage.objects.all()
-
-        context["products"] = products
-        context["collections"] = collections
-        context["product_images"] = product_images
-
-        return context
-
-
-class HomePage(Page):
-    def get_context(self, request):
-        context = super().get_context(request)
-
-        products = Product.objects.child_of(self.get_descendants()[0]).live()
-        collections = ProductCollection.objects.child_of(
-            self.get_descendants()[0]
-        ).live()
-
-        # Query all ProductImage objects related to the products
-        # product_images = ProductImage.objects.filter(product__in=products)
-
-        context["products"] = products
-        context["collections"] = collections
-        # context["product_images"] = product_images
-
-        return context
 
 
 @register_setting
