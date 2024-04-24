@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 {% load wagtailimages_tags %}
 {% load static %}
-{% load  static  wagtailsettings_tags %}
+{% load static wagtailsettings_tags %}
 {% load static wagtailcore_tags wagtailuserbar %}
 {% get_settings %}
 {% block content %}
 
-<section class="hero-section jarallax d-flex align-items-center justify-content-center padding-medium pb-5" style="background: url(images/hero-img.jpg) no-repeat;">
+<section class="hero-section jarallax d-flex align-items-center justify-content-center padding-medium pb-5"
+  style="background: url(images/hero-img.jpg) no-repeat;">
   <div class="hero-content">
     <div class="container">
       <div class="row">
@@ -43,14 +44,14 @@
               <option value="">Rating (Highest)</option>
               <option value="">Rating (Lowest)</option>
               <option value="">Model (A - Z)</option>
-              <option value="">Model (Z - A)</option>   
+              <option value="">Model (Z - A)</option>
             </select>
           </div>
         </div>
         <div class="row product-content product-store">
 
 
-          
+
           {% for product in products %}
 
 
@@ -73,7 +74,7 @@
               </div>
             </div>
           </div>
-      {% endfor %}
+          {% endfor %}
 
 
 
@@ -249,7 +250,9 @@
         <nav class="navigation paging-navigation text-center padding-medium" role="navigation">
           <div class="pagination loop-pagination d-flex justify-content-center align-items-center">
             <a href="#" class="d-flex pe-2">
-              <svg width="24" height="24"><use xlink:href="#angle-left"></use></svg>
+              <svg width="24" height="24">
+                <use xlink:href="#angle-left"></use>
+              </svg>
             </a>
             <span aria-current="page" class="page-numbers current pe-3">1</span>
             <a class="page-numbers pe-3" href="#">2</a>
@@ -257,7 +260,9 @@
             <a class="page-numbers pe-3" href="#">4</a>
             <a class="page-numbers" href="#">5</a>
             <a href="#" class="d-flex ps-2">
-              <svg width="24" height="24"><use xlink:href="#angle-right"></use></svg>
+              <svg width="24" height="24">
+                <use xlink:href="#angle-right"></use>
+              </svg>
             </a>
           </div>
         </nav>
@@ -266,7 +271,8 @@
         <div class="sidebar">
           <div class="widget-menu">
             <div class="widget-search-bar">
-              <form role="search" method="get" class="position-relative d-flex justify-content-between align-items-center border-bottom border-dark py-1">
+              <form role="search" method="get"
+                class="position-relative d-flex justify-content-between align-items-center border-bottom border-dark py-1">
                 <input class="search-field" placeholder="Search" type="search">
                 <div class="search-icon position-absolute end-0">
                   <a href="#">
@@ -276,7 +282,7 @@
                   </a>
                 </div>
               </form>
-            </div> 
+            </div>
           </div>
           <div class="widget-product-categories pt-5">
             <h5 class="widget-title text-decoration-underline text-uppercase">Categories</h5>
