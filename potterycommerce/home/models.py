@@ -144,8 +144,12 @@ class HomePage(Page):
 
         # context['products'] = Product.objects.child_of(self).live()
         products = Product.objects.child_of(self.get_descendants()[0]).live()
+        collections = ProductCollection.objects.child_of(
+            self.get_descendants()[0]
+        ).live()
         # products = ['a','bb']
         context["products"] = products
+        context["collections"] = collections
         return context
 
 
