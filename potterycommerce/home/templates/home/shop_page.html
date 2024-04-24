@@ -6,9 +6,18 @@
 {% get_settings %}
 {% block content %}
 
+<style>
+  .titleback {
+    background-image: url("{% static 'images/clay-background.png' %}");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
-<section class="hero-section jarallax d-flex align-items-center justify-content-center padding-medium pb-5"
-  style="background: url('{% static 'images/PERFIL_ARTISTA.jpg' %}) no-repeat;">
+  }
+</style>
+
+
+<section class="titleback hero-section jarallax d-flex align-items-center justify-content-center padding-medium pb-5">
   <div class="hero-content">
     <div class="container">
       <div class="row">
@@ -37,7 +46,7 @@
           </div>
           <div class="sort-by">
             <select id="input-sort" class="form-control" data-filter-sort="" data-filter-order="">
-              <option value="">Default sorting</option>
+              <option value="">Orden</option>
               <option value="">Name (A - Z)</option>
               <option value="">Name (Z - A)</option>
               <option value="">Price (Low-High)</option>
@@ -61,14 +70,15 @@
               <!-- The image holder with a zoom effect -->
               <div class="image-holder zoom-effect">
 
+                {% with found="0" %}
                 {% for product_image in product_images %}
+                {% if fount == "0" and product == product_image.product %}
                 {% image product_image.image fill-200x200 as tmp_image %}
-                {% if forloop.first %}
                 <img src="{{ tmp_image.url }}" alt="product-item" class="img-fluid zoom-in">
-                {% else %}
-
+                {% set found = "1" %}
                 {% endif %}
                 {% endfor %}
+                {% endwith %}
 
 
                 <div class="cart-concern position-absolute">
