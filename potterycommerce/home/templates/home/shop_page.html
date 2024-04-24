@@ -33,7 +33,7 @@
       <main class="col-md-9">
         <div class="filter-shop d-flex flex-wrap justify-content-between">
           <div class="showing-product">
-            <p>Mostrando 1-6 de {{ products|length }} productos</p>
+            <p>Mostrando 1-{{ products|length }} de {{ products|length }} productos</p>
           </div>
           <div class="sort-by">
             <select id="input-sort" class="form-control" data-filter-sort="" data-filter-order="">
@@ -50,8 +50,24 @@
           </div>
         </div>
         <div class="row product-content product-store">
+          {% if product_images %}
+          {% for product_image in product_images %}
+
+          {{ product_image.product }}
+          <img src="{{ tmp_image.url }}" alt="product-item" class="img-fluid zoom-in">
 
 
+          {% endfor %}
+          {% endif %}
+
+          {% if product_images %}
+          {% for product_image in product_images %}
+
+          {{ product_image.product }}
+          2
+
+          {% endfor %}
+          {% endif %}
 
           <!-- Start of loop through each product in the products list -->
           {% for product in products %}
@@ -139,37 +155,15 @@
               <li class="cat-item">
                 <a href="/collections/categories">Todas</a>
               </li>
+              {% for collection in collections %}
               <li class="cat-item">
-                <a href="">Colección1</a>
+                <a href="">{{ collection }}</a>
               </li>
-              <li class="cat-item">
-                <a href="">Colección2</a>
-              </li>
-              <li class="cat-item">
-                <a href="">Colección3</a>
-              </li>
-              <li class="cat-item">
-                <a href="">Colección4</a>
-              </li>
+              {% endfor %}
+
             </ul>
           </div>
-          <div class="widget-product-tags pt-3">
-            <h5 class="widget-title text-decoration-underline text-uppercase">Tags</h5>
-            <ul class="product-tags sidebar-list list-unstyled">
-              <li class="tags-item">
-                <a href="">Off-White</a>
-              </li>
-              <li class="tags-item">
-                <a href="">Cheap</a>
-              </li>
-              <li class="tags-item">
-                <a href="">Vintage</a>
-              </li>
-              <li class="tags-item">
-                <a href="">Modern</a>
-              </li>
-            </ul>
-          </div>
+
 
         </div>
       </aside>

@@ -14,13 +14,7 @@ class Product(Page):
     sku = models.CharField(max_length=255)
     short_description = models.TextField(blank=True, null=True)
     price = models.DecimalField(decimal_places=2, max_digits=10)
-    image = models.ForeignKey(
-        "wagtailimages.Image",
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name="+",
-    )
+
     collection = models.ForeignKey(
         "ProductCollection",
         null=True,
@@ -137,35 +131,40 @@ class CollectionImage(models.Model):
     ]
 
 
-class HomePage(Page):
+class ShopPage(Page):
     def get_context(self, request):
-
         context = super().get_context(request)
 
-        # context['products'] = Product.objects.child_of(self).live()
+        siblings = Page.objects.sibling_of(self)
+        products = Product.objects.child_of(siblings[0]).live()
+        collections = ProductCollection.objects.child_of(siblings[0]).live()
+
+        # Query all ProductImage objects related to the products
+        product_images = ProductImage.objects.all()
+
+        context["products"] = products
+        context["collections"] = collections
+        context["product_images"] = product_images
+
+        return context
+
+
+class HomePage(Page):
+    def get_context(self, request):
+        context = super().get_context(request)
+
         products = Product.objects.child_of(self.get_descendants()[0]).live()
         collections = ProductCollection.objects.child_of(
             self.get_descendants()[0]
         ).live()
-        # products = ['a','bb']
+
+        # Query all ProductImage objects related to the products
+        # product_images = ProductImage.objects.filter(product__in=products)
+
         context["products"] = products
         context["collections"] = collections
-        return context
+        # context["product_images"] = product_images
 
-
-# Defining a new model called ShopPage that inherits from the Page model
-class ShopPage(Page):
-    # Overriding the get_context method to add additional context
-    def get_context(self, request):
-        # Getting all sibling pages of the current page
-        siblings = Page.objects.sibling_of(self)
-        # Getting the context from the parent class
-        context = super().get_context(request)
-
-        # Getting all live child pages of the first sibling that are instances of the Product model
-        products = Product.objects.child_of(siblings[0]).live()
-
-        context["products"] = products
         return context
 
 
