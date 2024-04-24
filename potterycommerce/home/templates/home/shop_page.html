@@ -8,7 +8,7 @@
 
 
 <section class="hero-section jarallax d-flex align-items-center justify-content-center padding-medium pb-5"
-  style="background: url(images/hero-img.jpg) no-repeat;">
+  style="background: url('{% static 'images/PERFIL_ARTISTA.jpg' %}) no-repeat;">
   <div class="hero-content">
     <div class="container">
       <div class="row">
@@ -50,26 +50,9 @@
           </div>
         </div>
         <div class="row product-content product-store">
-          {% if product_images %}
-          {% for product_image in product_images %}
-
-          {{ product_image.product }}
-          <img src="{{ tmp_image.url }}" alt="product-item" class="img-fluid zoom-in">
-
-
-          {% endfor %}
-          {% endif %}
-
-          {% if product_images %}
-          {% for product_image in product_images %}
-
-          {{ product_image.product }}
-          2
-
-          {% endfor %}
-          {% endif %}
-
           <!-- Start of loop through each product in the products list -->
+
+
           {% for product in products %}
 
           <!-- Each product is displayed in a column that takes up 4 columns on large screens and 6 columns on medium screens -->
@@ -77,10 +60,17 @@
             <div class="product-card mb-3 position-relative">
               <!-- The image holder with a zoom effect -->
               <div class="image-holder zoom-effect">
-                <!-- The product image is loaded and resized to fit a 1000x1000 pixel box -->
-                {% image product.image fill-1000x1000 as tmp_image %}
-                <!-- The product image is displayed -->
+
+                {% for product_image in product_images %}
+                {% image product_image.image fill-200x200 as tmp_image %}
+                {% if forloop.first %}
                 <img src="{{ tmp_image.url }}" alt="product-item" class="img-fluid zoom-in">
+                {% else %}
+
+                {% endif %}
+                {% endfor %}
+
+
                 <div class="cart-concern position-absolute">
                   <div class="cart-button">
                     <!-- A link to the product's page -->
@@ -102,9 +92,6 @@
           </div>
 
           {% endfor %}
-
-
-
 
 
 
